@@ -26,6 +26,26 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile project(':domain')
+    def dataDependencies = rootProject.ext.dataDependencies
+    def testDependencies = rootProject.ext.dataTestDependencies
+    provided dataDependencies.javaxAnnotation
+    compile dataDependencies.dagger
+    annotationProcessor dataDependencies.daggerCompiler
+    compile dataDependencies.retrofit2
+    compile dataDependencies.retrofit2Converter
+    compile dataDependencies.retrofit2RxAdapter
+    compile dataDependencies.gson
+    compile dataDependencies.supportAnnotations
+
+    testCompile testDependencies.junit
+    testCompile testDependencies.assertj
+    testCompile testDependencies.mockito
+    testCompile testDependencies.supportAnnotations
 
     implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'

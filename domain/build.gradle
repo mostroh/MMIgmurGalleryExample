@@ -1,7 +1,16 @@
 apply plugin: 'java-library'
-
+configurations {
+    provided
+    annotationProcessor
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def domainDependencies = rootProject.ext.domainDependencies
+
+    provided domainDependencies.javaxAnnotation
+    compile domainDependencies.dagger
+    annotationProcessor domainDependencies.daggerCompiler
+    compile domainDependencies.gson
 }
 
 sourceCompatibility = "1.7"

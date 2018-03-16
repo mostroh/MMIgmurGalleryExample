@@ -1,0 +1,61 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+
+    applicationId = "example.mmigmur.mmimgurgalleryexample"
+    compileSdkVersion = 26
+    buildToolsVersion = "26.0.2"
+    versionCode = 1
+    versionName = "1.0.0"
+
+    minSdkVersion = 16
+    targetSdkVersion = 26
+
+//Libraries
+    supportLibraryVersion = '26.1.0'
+    daggerVersion = '2.14.1'
+    butterKnifeVersion = '8.8.1'
+    javaxAnnotationVersion = '1.0'
+    gsonVersion = '2.3'
+    readMoreTextViewVersion = '1.1.1'
+    dexterVersion = '2.3.0'
+    circleImageViewVersion = '2.1.0'
+    overscrollVersion = '1.0.3'
+    purchasesInAppVersion = '1.0.32'
+    firebaseCoreVersion = '11.4.2'
+    retrofitVersion = '2.4.0'
+    //Testing
+    
+    jUnitVersion = '4.12'
+    assertJVersion = '1.7.1'
+    mockitoVersion = '1.9.5'
+    dexmakerVersion = '1.2'
+    espressoVersion = '2.2.1'
+    testingRunnerVersion = '0.4.1'
+   
+    domainDependencies = [daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
+                          dagger         : "com.google.dagger:dagger:${daggerVersion}",
+                          javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+                          gson                    : "com.google.code.gson:gson:${gsonVersion}"]
+
+    domainTestDependencies = [junit  : "junit:junit:${jUnitVersion}",
+                              mockito: "org.mockito:mockito-core:${mockitoVersion}"]
+
+    dataDependencies = [daggerCompiler          : "com.google.dagger:dagger-compiler:${daggerVersion}",
+                        dagger                  : "com.google.dagger:dagger:${daggerVersion}",
+                        retrofit2               : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+                        retrofit2Converter      : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+                        retrofit2RxAdapter      : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+                        gson                    : "com.google.code.gson:gson:${gsonVersion}",
+                        javaxAnnotation         : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+                        supportAnnotations      : "com.android.support:support-annotations:${supportLibraryVersion}"]
+
+    dataTestDependencies = [junit             : "junit:junit:${jUnitVersion}",
+                            assertj           : "org.assertj:assertj-core:${assertJVersion}",
+                            mockito           : "org.mockito:mockito-core:${mockitoVersion}",
+                            supportAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}"]
+}
