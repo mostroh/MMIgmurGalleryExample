@@ -2,6 +2,8 @@ package example.mmigmur.data.storage;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,8 +20,11 @@ public class AuthStorage extends LocalStorageBase implements AuthStorageRepoInte
     private final String usernameKey = "username";
     private final String accountIdKey = "accountId";
 
-    public AuthStorage(Context context) {
+    private Gson gson;
+
+    public AuthStorage(Context context, Gson gson) {
         super(context);
+        this.gson = gson;
     }
 
     @Override

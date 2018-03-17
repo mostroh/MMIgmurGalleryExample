@@ -10,9 +10,12 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import example.mmigmur.data.storage.AuthStorage;
+import example.mmigmur.domain.boundaries.AuthStorageRepoInterface;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class NetModule {
@@ -34,14 +37,6 @@ public class NetModule {
 
     @Provides
     @Singleton
-    Cache provideHttpCache() {
-        int cacheSize = 10 * 1024 * 1024;
-        Cache cache = new Cache(context.getCacheDir(), cacheSize);
-        return cache;
-    }
-
-    @Provides
-    @Singleton
     Gson provideGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
@@ -50,11 +45,17 @@ public class NetModule {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
+    Retrofit provideRetrofit() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(mBaseUrl)
-                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit;
+    }
+
+    @Provides
+    @Singleton
+    AuthStorageRepoInterface provideAuthStorageRepoInterface (Gson gson){
+        return new AuthStorage(context, gson);
     }
 }

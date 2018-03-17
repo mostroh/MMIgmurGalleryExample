@@ -20,7 +20,7 @@ public class ActivityModule {
   @Provides
   @PerActivity
   LoginActivity provideLoginActivity() {
-    return (LoginActivity)this.baseActivity;
+    return (LoginActivity) this.baseActivity;
   }
 
 }

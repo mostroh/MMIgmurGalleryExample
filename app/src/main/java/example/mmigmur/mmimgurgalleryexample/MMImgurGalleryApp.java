@@ -6,13 +6,14 @@ import javax.inject.Inject;
 
 import example.mmigmur.mmimgurgalleryexample.di.application.AppComponent;
 import example.mmigmur.mmimgurgalleryexample.di.application.AppModule;
+import example.mmigmur.mmimgurgalleryexample.di.application.DaggerAppComponent;
 import example.mmigmur.mmimgurgalleryexample.di.network.NetModule;
 import example.mmigmur.mmimgurgalleryexample.utils.Constants;
 import retrofit2.Retrofit;
 
 public class MMImgurGalleryApp extends Application {
 
-    private AppComponent mMiMovistarAppComponent;
+    private AppComponent imgurAppComponent;
     private static MMImgurGalleryApp app;
     @Inject
     Retrofit retrofit;
@@ -41,16 +42,16 @@ public class MMImgurGalleryApp extends Application {
 
     public void initDI() {
 
-        mMiMovistarAppComponent = DaggerAppComponent.builder()
+        imgurAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .netModule(new NetModule(Constants.BASE_URL, this)).build();
 
         // Inject App inside DI Graph
-        mMiMovistarAppComponent.inject(this);
+        imgurAppComponent.inject(this);
     }
 
     public AppComponent getComponent() {
-        return app.mMiMovistarAppComponent;
+        return app.imgurAppComponent;
     }
 
     public boolean isReloadLandingConsumption() {

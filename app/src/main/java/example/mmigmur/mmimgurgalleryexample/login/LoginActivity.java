@@ -13,6 +13,10 @@ public class LoginActivity extends BaseActivity<ActivityComponent> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        getSupportFragmentManager().beginTransaction()
+        .replace(R.id.fl_login_content, LoginFragment.newInstance())
+        .commit();
     }
 
     @Override

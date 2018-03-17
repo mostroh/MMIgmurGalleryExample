@@ -27,12 +27,6 @@ public abstract class BaseFragment extends Fragment implements BaseFragmentView 
 
     public abstract void onBackPressed();
 
-    protected abstract void setConsummesBack();
-
-    public boolean getConsummesBack() {
-        return consummesBack;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +65,6 @@ public abstract class BaseFragment extends Fragment implements BaseFragmentView 
         if (onViewCreatedListener != null) {
             onViewCreatedListener.OnViewCreated(view);
         }
-        setConsummesBack();
     }
 
     /**

@@ -9,7 +9,6 @@ import example.mmigmur.mmimgurgalleryexample.di.application.AppComponent;
 public abstract class BaseActivity<T> extends AppCompatActivity {
 
     protected T activityComponent;
-    protected int containerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +27,5 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
         if (activityComponent == null)
             initDI();
         return activityComponent;
-    }
-
-    public int getContainerId()
-    {
-        return containerId;
     }
 }
