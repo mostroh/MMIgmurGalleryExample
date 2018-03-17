@@ -8,6 +8,8 @@ public interface AuthStorageRepoInterface extends BaseStorageRepoInterface {
 
     void saveCredentials(String accessToken, String refreshToken, String username, Integer accountId);
 
+    void saveCredentials(String accessToken, String refreshToken, String username);
+
     String getAccessToken();
 
     String getRefreshToken();
@@ -15,4 +17,5 @@ public interface AuthStorageRepoInterface extends BaseStorageRepoInterface {
     String getUsername();
 
     String getAccountId();
+
 }

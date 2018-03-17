@@ -1,0 +1,14 @@
+package example.mmigmur.mmimgurgalleryexample.login;
+
+import example.mmigmur.mmimgurgalleryexample.base.BaseFragmentView;
+
+/**
+ * Created by migarcma on 17/3/18.
+ */
+
+public interface LoginWebViewView extends BaseFragmentView {
+
+    void hideKeyboard();
+
+    void showGallery();
+}

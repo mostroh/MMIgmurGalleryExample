@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <!-- FULL SCREEN DIALOG -->
+    <style name="LoadingTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/colorLoadingBG</item>
+        <item name="colorPrimaryDark">@color/colorLoadingBG</item>
+        <item name="colorAccent">@color/colorLoadingBG</item>
+
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+
+        <!-- No backgrounds, titles or window float -->
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+
+    </style>
+
 </resources>

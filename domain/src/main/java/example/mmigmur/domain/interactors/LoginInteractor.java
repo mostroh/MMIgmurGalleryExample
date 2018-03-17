@@ -8,10 +8,16 @@ import example.mmigmur.domain.model.Authorization;
 
 public interface LoginInteractor {
 
-    void login(Integer clientId, String clientSecret, LoginInteractorResponse loginInteractorResponse);
+    void login(String clientId, String clientSecret, LoginInteractorResponse loginInteractorResponse);
+
+    void saveCredentials(String refreshToken, String accessToken, String userName);
 
     interface LoginInteractorResponse {
 
         void onLoginInteractorResponseSuccess(Authorization authorization);
+
+        void onLoginInteractorResponseFailureConnection();
+
+        void onLoginInteractorResponseFailureAuth();
     }
 }

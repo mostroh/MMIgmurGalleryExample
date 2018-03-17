@@ -24,18 +24,24 @@ public class LoginInteractorImpl implements LoginInteractor {
     }
 
     @Override
-    public void login(Integer clientId, String clientSecret,LoginInteractorResponse loginInteractorResponse) {
+    public void login(String clientId, String clientSecret,LoginInteractorResponse loginInteractorResponse) {
 
         LoginRunnable loginRunnable = new LoginRunnable(clientId,clientSecret,loginInteractorResponse);
+        loginRunnable.run();
+    }
+
+    @Override
+    public void saveCredentials(String refreshToken, String accessToken, String username) {
+        authStorageRepoInterface.saveCredentials(accessToken, refreshToken, username);
     }
 
     private class LoginRunnable implements Runnable, LoginRepoInterface.LoginResponseListener {
 
         private LoginInteractorResponse loginInteractorResponse;
-        private Integer clientId;
+        private String clientId;
         private String clientSecret;
 
-        private LoginRunnable(Integer clientId, String clientSecret,LoginInteractorResponse loginInteractorResponse) {
+        private LoginRunnable(String clientId, String clientSecret,LoginInteractorResponse loginInteractorResponse) {
 
             this.clientId = clientId;
             this.clientSecret = clientSecret;
@@ -60,6 +66,16 @@ public class LoginInteractorImpl implements LoginInteractor {
                 authStorageRepoInterface.saveCredentials(accessToken,refreshtoken,username,accountId);
                 loginInteractorResponse.onLoginInteractorResponseSuccess(authorization);
             }
+        }
+
+        @Override
+        public void onLoginFailureConnection() {
+            loginInteractorResponse.onLoginInteractorResponseFailureConnection();
+        }
+
+        @Override
+        public void onLoginFailureAuth() {
+            loginInteractorResponse.onLoginInteractorResponseFailureAuth();
         }
     }
 }

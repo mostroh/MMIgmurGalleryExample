@@ -8,6 +8,9 @@ import example.mmigmur.mmimgurgalleryexample.di.scopes.PerFragment;
 import example.mmigmur.mmimgurgalleryexample.login.LoginPresenter;
 import example.mmigmur.mmimgurgalleryexample.login.LoginPresenterImpl;
 import example.mmigmur.mmimgurgalleryexample.login.LoginView;
+import example.mmigmur.mmimgurgalleryexample.login.LoginWebViewPresenter;
+import example.mmigmur.mmimgurgalleryexample.login.LoginWebViewPresenterImpl;
+import example.mmigmur.mmimgurgalleryexample.login.LoginWebViewView;
 
 @Module()
 public class BaseFragmentModule {
@@ -28,6 +31,12 @@ public class BaseFragmentModule {
     @Provides
     LoginPresenter provideLoginPresenter(BaseFragmentComponent baseFragmentComponent) {
         return new LoginPresenterImpl(baseFragmentComponent.with(new BasePresenterModule()), (LoginView) baseView);
+    }
+
+    @PerFragment
+    @Provides
+    LoginWebViewPresenter provideLoginWebViewPresenter(BaseFragmentComponent baseFragmentComponent) {
+        return new LoginWebViewPresenterImpl(baseFragmentComponent.with(new BasePresenterModule()), (LoginWebViewView) baseView);
     }
 
 }

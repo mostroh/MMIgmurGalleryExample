@@ -38,6 +38,15 @@ public class AuthStorage extends LocalStorageBase implements AuthStorageRepoInte
     }
 
     @Override
+    public void saveCredentials(String accessToken, String refreshToken, String username) {
+        Map<String, String> params = new HashMap<>();
+        params.put(accessTokenKey, accessToken);
+        params.put(refreshTokenKey, refreshToken);
+        params.put(usernameKey, username);
+        saveData(params);
+    }
+
+    @Override
     public String getAccessToken() {
         return loadData(accessTokenKey);
     }

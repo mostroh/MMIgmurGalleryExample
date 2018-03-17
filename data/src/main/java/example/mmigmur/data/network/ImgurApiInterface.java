@@ -1,10 +1,13 @@
 package example.mmigmur.data.network;
 
+import example.mmigmur.data.entities.AuthorizationEntity;
 import example.mmigmur.data.entities.response.AuthResponse;
 import example.mmigmur.data.entities.response.GalleryResponse;
 import example.mmigmur.data.entities.response.UploadImageResponse;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -17,12 +20,13 @@ import retrofit2.http.Query;
 
 public interface ImgurApiInterface {
 
+        @FormUrlEncoded
         @POST("/oauth2/token")
-        Call<AuthResponse> login(
-                @Query("refresh_token") String refreshToken,
-                @Query("client_id") Integer clientId,
-                @Query("client_secret") String clientSecret,
-                @Query("grant_type") String grantType
+        Call<AuthorizationEntity> login(
+                @Field("refresh_token") String refreshToken,
+                @Field("client_id") String clientId,
+                @Field("client_secret") String clientSecret,
+                @Field("grant_type") String grantType
         );
 
 

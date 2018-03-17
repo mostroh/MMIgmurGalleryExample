@@ -9,12 +9,16 @@ import example.mmigmur.domain.model.Authorization;
 public interface LoginRepoInterface {
 
     void login(String refreshToken,
-               Integer clientId,
+               String clientId,
                String clientSecret,
                LoginResponseListener loginResponseListener);
 
     interface LoginResponseListener {
 
         void onLoginSuccesResponse(Authorization authorization);
+
+        void onLoginFailureConnection();
+
+        void onLoginFailureAuth();
     }
 }

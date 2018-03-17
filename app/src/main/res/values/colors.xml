@@ -27,6 +27,7 @@
     <color name="tangerine">#f59c00</color>
     <color name="lightEggplant">#954b97</color>
     <color name="transparent">#00000000</color>
+    <color name="colorLoadingBG">#90ffffff</color>
     <color name="black_dialog_text">#8a000000</color>
     <color name="black_dialog_title">#de000000</color>
     <color name="black_dialog_finger">#61000000</color>
