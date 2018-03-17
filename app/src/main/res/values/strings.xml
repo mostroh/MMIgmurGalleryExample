@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Imgur Gallery Example</string>
     <string name="button_login">LOGIN IMGUR</string>
+    <string name="button_upload">SUBIR FOTO</string>
 
     <!-- GENERAL -->
     <string name="BTN_ACEPT">ACEPTAR</string>

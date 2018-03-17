@@ -28,6 +28,6 @@ public class LoginWebViewPresenterImpl extends BasePresenterImpl<LoginWebViewVie
     @Override
     public void saveCredentials(String refreshToken, String accessToken, String userName) {
         loginInteractor.saveCredentials(refreshToken, accessToken, userName);
-        view.showGallery();
+        view.goToGallery(userName);
     }
 }

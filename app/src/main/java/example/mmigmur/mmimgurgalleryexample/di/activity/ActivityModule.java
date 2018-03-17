@@ -5,6 +5,7 @@ import dagger.Module;
 import dagger.Provides;
 import example.mmigmur.mmimgurgalleryexample.base.BaseActivity;
 import example.mmigmur.mmimgurgalleryexample.di.scopes.PerActivity;
+import example.mmigmur.mmimgurgalleryexample.gallery.GalleryActivity;
 import example.mmigmur.mmimgurgalleryexample.login.LoginActivity;
 
 
@@ -21,6 +22,12 @@ public class ActivityModule {
   @PerActivity
   LoginActivity provideLoginActivity() {
     return (LoginActivity) this.baseActivity;
+  }
+
+  @Provides
+  @PerActivity
+  GalleryActivity provideGalleryActivity() {
+    return (GalleryActivity) this.baseActivity;
   }
 
 }

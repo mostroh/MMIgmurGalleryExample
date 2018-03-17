@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/iv_gallery_login"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:src="@mipmap/gallery_login_icon"/>
@@ -21,7 +21,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textColor="@color/white"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="20dp"/>
 
 
 </LinearLayout>

@@ -11,4 +11,5 @@ public interface LoginView extends BaseFragmentView {
     void hideLoading();
     void showConnectionError();
     void showLoginWebViewFragment();
+    void goToGallery(String username);
 }

@@ -40,6 +40,7 @@ public class LoginPresenterImpl extends BasePresenterImpl<LoginView> implements 
     @Override
     public void onLoginInteractorResponseSuccess(Authorization authorization) {
         view.hideLoading();
+        view.goToGallery(authorization.getUsername());
     }
 
     @Override

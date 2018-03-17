@@ -25,6 +25,8 @@ public class Constants {
       Redirect URL for android.
      */
     public static final String MY_IMGUR_REDIRECT_URL = "https://android-mmimgur";
+    public static final String USER_NAME_KEY = "user_name_key";
+    public static final String EMPTY = "";
 
     /*
       Client Auth

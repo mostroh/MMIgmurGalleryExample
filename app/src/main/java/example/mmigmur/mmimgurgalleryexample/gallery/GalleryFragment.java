@@ -1,46 +1,58 @@
-package example.mmigmur.mmimgurgalleryexample.login;
+package example.mmigmur.mmimgurgalleryexample.gallery;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.RecyclerView;
 
 import javax.inject.Inject;
 
-import butterknife.OnClick;
+import butterknife.BindView;
 import example.mmigmur.mmimgurgalleryexample.R;
+import example.mmigmur.mmimgurgalleryexample.base.BaseActivity;
 import example.mmigmur.mmimgurgalleryexample.base.BaseFragment;
 import example.mmigmur.mmimgurgalleryexample.di.activity.ActivityComponent;
 import example.mmigmur.mmimgurgalleryexample.di.fragment.BaseFragmentModule;
+import example.mmigmur.mmimgurgalleryexample.utils.Constants;
 import example.mmigmur.mmimgurgalleryexample.utils.DialogManager;
-import example.mmigmur.mmimgurgalleryexample.utils.NavigationManager;
 
 /**
  * Created by migarcma on 17/3/18.
  */
 
-public class LoginFragment extends BaseFragment implements LoginView {
+public class GalleryFragment extends BaseFragment implements GalleryView {
+
+    @BindView(R.id.rv_gallery)
+    RecyclerView rvGallery;
 
     @Inject
-    LoginPresenter presenter;
+    GalleryPresenter presenter;
 
-    public static LoginFragment newInstance() {
+    public static GalleryFragment newInstance(String username) {
 
         Bundle args = new Bundle();
 
-        LoginFragment fragment = new LoginFragment();
+        args.putString(Constants.USER_NAME_KEY, username);
+
+        GalleryFragment fragment = new GalleryFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        String username = getArguments().getString(Constants.USER_NAME_KEY);
+        ((BaseActivity) getActivity())
+                .setActionBarTitle("Galería de " + username);
+    }
 
     @Override
     public void initViews() {
-        //nothing to do here
+        //to be completed
     }
 
     @Override
     protected int getXMLToInflate() {
-        return R.layout.fragment_login;
+        return 0;
     }
 
     @Override
@@ -59,12 +71,6 @@ public class LoginFragment extends BaseFragment implements LoginView {
         fragmentComponent.inject(this);
     }
 
-    @OnClick(R.id.button_login)
-    void loginClicked(){
-        presenter.tryLogin();
-    }
-
-
     @Override
     public void showLoading() {
         DialogManager.getProgressDialog(getActivity());
@@ -73,24 +79,5 @@ public class LoginFragment extends BaseFragment implements LoginView {
     @Override
     public void hideLoading() {
         DialogManager.hideCurrentDialog();
-    }
-
-    @Override
-    public void showConnectionError() {
-        DialogManager.showSnackBarMessage(getView(), getString(R.string.ERROR_CONECTION_MSG), Snackbar.LENGTH_LONG);
-
-    }
-
-    @Override
-    public void showLoginWebViewFragment() {
-        FragmentManager fm = getFragmentManager();
-        fm.beginTransaction()
-                .replace(R.id.fl_login_content, LoginWebViewFragment.newInstance())
-                .commit();
-    }
-
-    @Override
-    public void goToGallery(String username) {
-        NavigationManager.goToGallery(getActivity(),true,username);
     }
 }

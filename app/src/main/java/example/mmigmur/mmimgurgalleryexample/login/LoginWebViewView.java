@@ -10,5 +10,5 @@ public interface LoginWebViewView extends BaseFragmentView {
 
     void hideKeyboard();
 
-    void showGallery();
+    void goToGallery(String username);
 }

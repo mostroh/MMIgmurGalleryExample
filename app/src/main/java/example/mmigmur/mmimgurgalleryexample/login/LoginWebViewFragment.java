@@ -20,6 +20,7 @@ import example.mmigmur.mmimgurgalleryexample.di.activity.ActivityComponent;
 import example.mmigmur.mmimgurgalleryexample.di.fragment.BaseFragmentModule;
 import example.mmigmur.mmimgurgalleryexample.utils.Constants;
 import example.mmigmur.mmimgurgalleryexample.utils.DialogManager;
+import example.mmigmur.mmimgurgalleryexample.utils.NavigationManager;
 
 /**
  * Created by migarcma on 17/3/18.
@@ -126,8 +127,8 @@ public class LoginWebViewFragment extends BaseFragment implements LoginWebViewVi
     }
 
     @Override
-    public void showGallery() {
-        
+    public void goToGallery(String username) {
+        NavigationManager.goToGallery(getActivity(),true,username);
     }
 
 }

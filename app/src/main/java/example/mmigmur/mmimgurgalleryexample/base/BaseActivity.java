@@ -28,4 +28,8 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
             initDI();
         return activityComponent;
     }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
 }
