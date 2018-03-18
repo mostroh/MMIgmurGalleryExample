@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import example.mmigmur.data.di.BaseRepositoryComponent;
 import example.mmigmur.data.entities.AuthorizationEntity;
 import example.mmigmur.data.entities.mapper.AuthorizationToAuthorizationEntityMapper;
-import example.mmigmur.data.entities.response.AuthResponse;
 import example.mmigmur.data.network.ImgurApiInterface;
 import example.mmigmur.domain.boundaries.LoginRepoInterface;
 import example.mmigmur.domain.model.Authorization;

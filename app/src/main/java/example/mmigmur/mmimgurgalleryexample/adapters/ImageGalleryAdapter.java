@@ -24,9 +24,12 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
 
     private Context mContext;
 
-    public ImageGalleryAdapter(Context context, List<ImageViewModel> galleryList) {
+    private OnImageClickedListener onImageClickedListener;
+
+    public ImageGalleryAdapter(Context context, List<ImageViewModel> galleryList, OnImageClickedListener onImageClickedListener) {
         mContext = context;
         this.galleryList = galleryList;
+        this.onImageClickedListener = onImageClickedListener;
     }
 
     @Override
@@ -46,6 +49,7 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
         ImageView imageView = holder.mPhotoImageView;
 
         Picasso.get().load(imageViewModel.getLink())
+                .resize(100, 100)
                 .centerCrop()
                 .into(imageView);
     }
@@ -73,12 +77,15 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
             if(position != RecyclerView.NO_POSITION) {
                 ImageViewModel imageViewModel = galleryList.get(position);
 
-                //TODO start activity with detail
-//                Intent intent = new Intent(mContext, SpacePhotoActivity.class);
-//                intent.putExtra(SpacePhotoActivity.EXTRA_SPACE_PHOTO, spacePhoto);
-//                startActivity(intent);
+                if (onImageClickedListener!=null){
+                    onImageClickedListener.imageClicked(imageViewModel);
+                }
             }
         }
+    }
+
+    public interface OnImageClickedListener{
+        void imageClicked(ImageViewModel imageViewModelClicked);
     }
 
 }

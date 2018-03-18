@@ -15,6 +15,7 @@
     <string name="BTN_CANCEL">CANCELAR</string>
     <string name="BTN_CLOSE">CERRAR</string>
     <string name="ERROR_CONECTION_MSG">Hubo un error de conexión. Verifica que tienes acceso a internet.</string>
+    <string name="ERROR_GALLERY_ACCESS">Hubo un error accediendo a la galería.</string>
     <string name="logged_in">Conectado</string>
     <string name="wrong_credentials">Credenciales incorrectas</string>
 </resources>

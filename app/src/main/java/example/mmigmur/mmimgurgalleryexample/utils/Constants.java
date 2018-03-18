@@ -27,6 +27,7 @@ public class Constants {
     public static final String MY_IMGUR_REDIRECT_URL = "https://android-mmimgur";
     public static final String USER_NAME_KEY = "user_name_key";
     public static final String EMPTY = "";
+    public static final String IMAGE_MODEL = "image_model";
 
     /*
       Client Auth

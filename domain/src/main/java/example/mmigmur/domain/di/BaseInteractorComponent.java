@@ -3,6 +3,7 @@ package example.mmigmur.domain.di;
 
 import dagger.Subcomponent;
 import example.mmigmur.domain.di.scopes.PerInteractor;
+import example.mmigmur.domain.interactors.GalleryInteractorImpl;
 import example.mmigmur.domain.interactors.LoginInteractorImpl;
 
 
@@ -14,4 +15,6 @@ import example.mmigmur.domain.interactors.LoginInteractorImpl;
 public interface BaseInteractorComponent {
 
     void inject(LoginInteractorImpl loginInteractor);
+
+    void inject(GalleryInteractorImpl galleryInteractor);
 }

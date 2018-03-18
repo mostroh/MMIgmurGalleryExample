@@ -1,30 +1,38 @@
 package example.mmigmur.mmimgurgalleryexample.gallery;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import example.mmigmur.mmimgurgalleryexample.R;
+import example.mmigmur.mmimgurgalleryexample.adapters.ImageGalleryAdapter;
 import example.mmigmur.mmimgurgalleryexample.base.BaseActivity;
 import example.mmigmur.mmimgurgalleryexample.base.BaseFragment;
 import example.mmigmur.mmimgurgalleryexample.di.activity.ActivityComponent;
 import example.mmigmur.mmimgurgalleryexample.di.fragment.BaseFragmentModule;
 import example.mmigmur.mmimgurgalleryexample.utils.Constants;
 import example.mmigmur.mmimgurgalleryexample.utils.DialogManager;
+import example.mmigmur.mmimgurgalleryexample.viewmodel.ImageViewModel;
 
 /**
  * Created by migarcma on 17/3/18.
  */
 
-public class GalleryFragment extends BaseFragment implements GalleryView {
+public class GalleryFragment extends BaseFragment implements GalleryView, ImageGalleryAdapter.OnImageClickedListener {
 
     @BindView(R.id.rv_gallery)
     RecyclerView rvGallery;
 
     @Inject
     GalleryPresenter presenter;
+
+    private List<ImageViewModel> gallery = null;
 
     public static GalleryFragment newInstance(String username) {
 
@@ -48,11 +56,17 @@ public class GalleryFragment extends BaseFragment implements GalleryView {
     @Override
     public void initViews() {
         //to be completed
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        rvGallery.setHasFixedSize(true);
+        rvGallery.setLayoutManager(layoutManager);
+
+        ImageGalleryAdapter adapter = new ImageGalleryAdapter(getActivity(), gallery, this);
+        rvGallery.setAdapter(adapter);
     }
 
     @Override
     protected int getXMLToInflate() {
-        return 0;
+        return R.layout.fragment_gallery;
     }
 
     @Override
@@ -79,5 +93,25 @@ public class GalleryFragment extends BaseFragment implements GalleryView {
     @Override
     public void hideLoading() {
         DialogManager.hideCurrentDialog();
+    }
+
+    @Override
+    public void showGalleryError() {
+        DialogManager.showSnackBarMessage(getView(), getString(R.string.ERROR_CONECTION_MSG), Snackbar.LENGTH_LONG);
+    }
+
+    @Override
+    public void showConnectionError() {
+        DialogManager.showSnackBarMessage(getView(), getString(R.string.ERROR_CONECTION_MSG), Snackbar.LENGTH_LONG);
+    }
+
+    @Override
+    public void setUpGallery(List<ImageViewModel> viewGallery) {
+        this.gallery = viewGallery;
+    }
+
+    @Override
+    public void imageClicked(ImageViewModel imageViewModelClicked) {
+
     }
 }
