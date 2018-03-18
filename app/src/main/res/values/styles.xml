@@ -38,4 +38,26 @@
         <item name="colorControlActivated">@color/azure</item>
     </style>
 
+    <!-- Animation for dialog box -->
+    <style name="DialogSlideAnim" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/transparent</item>
+        <item name="colorPrimaryDark">@color/transparent</item>
+        <item name="colorAccent">@color/transparent</item>
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <!-- No backgrounds, titles or window float -->
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="animTopBottom">
+        <item name="android:windowEnterAnimation">@anim/anim_top_notification_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_top_notification_out</item>
+    </style>
+
 </resources>

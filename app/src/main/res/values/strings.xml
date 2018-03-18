@@ -21,7 +21,14 @@
     <string name="BTN_CLOSE">CERRAR</string>
     <string name="ERROR_CONECTION_MSG">Hubo un error de conexión. Verifica que tienes acceso a internet.</string>
     <string name="ERROR_DELETING">Ocurrió un error y no se pudo borrar la imagen.</string>
+    <string name="ERROR_UPLOADING">Ocurrió un error durante la subida. Vuelva a intentarlo</string>
     <string name="ERROR_GALLERY_ACCESS">Ocurrió un error accediendo a la galería.</string>
     <string name="logged_in">Conectado</string>
     <string name="wrong_credentials">Credenciales incorrectas</string>
+    <string name="MSG_UPLOADED">Subida correcta</string>
+
+
+    <string formatted='false' name="TAKE_PHOTO">Hacer una foto</string>
+    <string formatted='false' name="CHOOSE_FROM_GALERY">Seleccionar foto de la galería</string>
+    <string formatted='false' name="CANCEL">Cancelar</string>
 </resources>

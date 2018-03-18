@@ -339,6 +339,93 @@ public class DialogManager {
                 .show();
     }
 
+    /**
+     *
+     * @param context - app context
+     */
+    public static void getBottomOptionMenu(Context context,MenuOptionsAdapter adapter, AdapterView.OnItemClickListener menuClickListener){
+
+        final Dialog dialog = new Dialog(context, R.style.DialogSlideAnim);
+        dialog.setCanceledOnTouchOutside(true);
+
+        LayoutInflater inflater = LayoutInflater.from(context);
+        RelativeLayout rlBottomMenu = (RelativeLayout)inflater.inflate(R.layout.lay_dialog_bottom_menu, null);
+        dialog.setContentView(rlBottomMenu);
+
+        ListView lvMenuItems = (ListView) rlBottomMenu.findViewById(R.id.lvMenuItems);
+        lvMenuItems.setOnItemClickListener(menuClickListener);
+        lvMenuItems.setAdapter(adapter);
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animTopBottom;
+
+        // Mostramos la alerta en el hilo principal
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        mainHandler.post(new Runnable() {
+
+            @Override
+            public void run() {
+                // Mostramos la alerta
+                currentDialog = dialog;
+                dialog.show();
+            }
+        });
+
+    }
+
+    /**
+     * Listview Adapter
+     */
+    public static class MenuOptionsAdapter extends BaseAdapter {
+
+        private CharSequence[] options;
+        private int[] iconList;
+        private Context context;
+
+        public MenuOptionsAdapter(CharSequence[] options, int[] iconList, Context context){
+            this.options = options;
+            this.iconList = iconList;
+            this.context = context;
+        }
+
+
+        @Override
+        public int getCount() {
+            return this.options != null ? this.options.length : 0;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return this.options[position];
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            //get view
+            View rowView = convertView;
+
+            //if convert is null, inflate new view
+            if(rowView == null){
+                rowView = LayoutInflater.from(this.context).inflate(R.layout.lay_bottom_menu_row, parent, false);
+            }
+
+            TextView tvOption = (TextView) rowView.findViewById(R.id.tvOption);
+            tvOption.setText(this.options[position]);
+            rowView.setTag(position);
+
+            ImageView ivIcon = (ImageView) rowView.findViewById(R.id.ivIcon);
+            ivIcon.setImageResource(this.iconList[position]);
+
+            return rowView;
+        }
+
+    }
+
 
 //    public static void showSuccessDialog(Context context, String title, String subtitle, String btnText, View.OnClickListener btnListener){
 //

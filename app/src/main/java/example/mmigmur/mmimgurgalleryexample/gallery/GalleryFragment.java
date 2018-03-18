@@ -142,6 +142,6 @@ public class GalleryFragment extends BaseFragment implements GalleryView, ImageG
 
     @Override
     public void imageUploaded() {
-
+        presenter.refreshGallery();
     }
 }

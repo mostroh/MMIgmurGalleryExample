@@ -7,4 +7,5 @@ import example.mmigmur.mmimgurgalleryexample.base.BasePresenter;
  */
 
 public interface UploadPresenter extends BasePresenter {
+    void uploadImage(String b64Photo,String title, String description);
 }

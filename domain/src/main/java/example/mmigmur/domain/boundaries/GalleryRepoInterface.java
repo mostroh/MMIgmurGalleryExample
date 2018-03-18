@@ -2,6 +2,7 @@ package example.mmigmur.domain.boundaries;
 
 import java.util.List;
 
+import example.mmigmur.domain.interactors.GalleryInteractorImpl;
 import example.mmigmur.domain.model.Image;
 
 /**
@@ -11,6 +12,7 @@ import example.mmigmur.domain.model.Image;
 public interface GalleryRepoInterface {
 
     void getAccountGallery(String refreshToken, String accessToken, GalleryResponseListener galleryResponseListener);
+
 
     interface GalleryResponseListener{
 
@@ -28,5 +30,14 @@ public interface GalleryRepoInterface {
         void onDeleteSuccessResponse();
 
         void onDeleteFailureResponse();
+    }
+
+    void uploadImage(String b64Image, String title, String description, String accessToken, UploadResponseListener uploadResponseListener);
+
+    interface UploadResponseListener {
+
+        void onUploadSuccessResponse();
+
+        void onUploadFailureResponse();
     }
 }

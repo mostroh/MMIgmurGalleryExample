@@ -10,6 +10,7 @@ import example.mmigmur.data.entities.ImageEntity;
 import example.mmigmur.data.entities.mapper.ImageToImageEntityMapper;
 import example.mmigmur.data.entities.response.DeleteResponse;
 import example.mmigmur.data.entities.response.GalleryResponse;
+import example.mmigmur.data.entities.response.UploadImageResponse;
 import example.mmigmur.data.network.ImgurApiInterface;
 import example.mmigmur.domain.boundaries.GalleryRepoInterface;
 import example.mmigmur.domain.model.Image;
@@ -78,6 +79,26 @@ public class GalleryService implements GalleryRepoInterface {
                     @Override
                     public void onFailure(Call<DeleteResponse> call, Throwable t) {
                         deleteResponseListener.onDeleteFailureResponse();
+                    }
+                });
+    }
+
+    @Override
+    public void uploadImage(String b64Image, String title, String description, String accessToken, final UploadResponseListener uploadResponseListener) {
+        imgurApiInterface.postImage("Bearer "+accessToken,b64Image,title,description)
+                .enqueue(new Callback<UploadImageResponse>() {
+                    @Override
+                    public void onResponse(Call<UploadImageResponse> call, Response<UploadImageResponse> response) {
+                        if (response.isSuccessful()){
+                            uploadResponseListener.onUploadSuccessResponse();
+                        } else {
+                            uploadResponseListener.onUploadFailureResponse();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UploadImageResponse> call, Throwable t) {
+                        uploadResponseListener.onUploadFailureResponse();
                     }
                 });
     }

@@ -37,6 +37,12 @@ public class GalleryInteractorImpl implements GalleryInteractor {
         imageDeleteRunnable.run();
     }
 
+    @Override
+    public void uploadImage(String b64Image, String title, String description, ImageUploadInteractorResponse imageUploadInteractorResponse) {
+        ImageUploadRunnable imageUploadRunnable = new ImageUploadRunnable(b64Image,title,description,imageUploadInteractorResponse);
+        imageUploadRunnable.run();
+    }
+
     private class AccountGalleryRunnable implements Runnable, GalleryRepoInterface.GalleryResponseListener {
 
         private AccountGalleryInteractorResponse accountGalleryInteractorResponse;
@@ -94,6 +100,41 @@ public class GalleryInteractorImpl implements GalleryInteractor {
         @Override
         public void onDeleteFailureResponse() {
             imageDeleteInteractorResponse.onDeleteFailure();
+        }
+    }
+
+    private class ImageUploadRunnable implements Runnable, GalleryRepoInterface.UploadResponseListener {
+
+        private String b64Image;
+        private String title;
+        private String description;
+        private ImageUploadInteractorResponse imageUploadInteractorResponse;
+
+        private ImageUploadRunnable(String b64Image,
+                                    String title,
+                                    String description,
+                                    ImageUploadInteractorResponse imageUploadInteractorResponse) {
+            this.b64Image = b64Image;
+            this.title = title;
+            this.description = description;
+            this.imageUploadInteractorResponse = imageUploadInteractorResponse;
+        }
+
+        @Override
+        public void run() {
+            String accessToken = authStorageRepoInterface.getAccessToken();
+            galleryRepoInterface.uploadImage(b64Image,title, description, accessToken,this);
+        }
+
+
+        @Override
+        public void onUploadSuccessResponse() {
+            imageUploadInteractorResponse.onUploadSuccess();
+        }
+
+        @Override
+        public void onUploadFailureResponse() {
+            imageUploadInteractorResponse.onUploadFailure();
         }
     }
 }

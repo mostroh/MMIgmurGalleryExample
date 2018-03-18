@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="wIconInboxMenu">25dp</dimen>
+    <dimen name="hIconInboxMenu">25dp</dimen>
+    <dimen name="marginLeftIconInboxMenu">14dp</dimen>
+    <dimen name="marginRightIconInboxMenu">20dp</dimen>
+    <dimen name="marginTopIconInboxMenu">20dp</dimen>
+    <dimen name="marginBotIconInboxMenu">12dp</dimen>
+</resources>

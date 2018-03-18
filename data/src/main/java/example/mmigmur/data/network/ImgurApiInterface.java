@@ -43,21 +43,18 @@ public interface ImgurApiInterface {
      * @param auth        #Type of authorization for upload
      * @param title       #Title of image
      * @param description #Description of image
-     * @param albumId     #ID for album (if the user is adding this image to an album)
-     * @param username    username for upload
-     * @param file        image
+     * @param b64Image        image
      * @return            Callback used for success/failures
      */
 
     //RequestBody file = RequestBody.create(MediaType.parse("image/*"), path);
+    @FormUrlEncoded
     @POST("/3/image")
     Call<UploadImageResponse> postImage(
             @Header("Authorization") String auth,
-            @Query("title") String title,
-            @Query("description") String description,
-            @Query("album") String albumId,
-            @Query("account_url") String username,
-            @Part("image")RequestBody file
+            @Field("image")String b64Image,
+            @Field("title") String title,
+            @Field("description") String description
     );
 
     /**

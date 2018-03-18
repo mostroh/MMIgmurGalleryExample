@@ -29,4 +29,13 @@ public interface GalleryInteractor {
 
         void onDeleteFailure();
     }
+
+    void uploadImage(String b64Image, String title, String description, ImageUploadInteractorResponse imageUploadInteractorResponse);
+
+    interface ImageUploadInteractorResponse {
+
+        void onUploadSuccess();
+
+        void onUploadFailure();
+    }
 }

@@ -1,5 +1,7 @@
 package example.mmigmur.mmimgurgalleryexample.gallery;
 
+import android.graphics.Bitmap;
+
 import example.mmigmur.mmimgurgalleryexample.base.BaseFragmentView;
 
 /**
@@ -9,4 +11,9 @@ import example.mmigmur.mmimgurgalleryexample.base.BaseFragmentView;
 public interface ImageUploadView extends BaseFragmentView {
 
     void hideKeyboard();
+    void showLoading();
+    void hideLoading();
+    void showErrorUploading();
+    void updateImage(Bitmap bitmap);
+    void notifyUploadSuccess();
 }
