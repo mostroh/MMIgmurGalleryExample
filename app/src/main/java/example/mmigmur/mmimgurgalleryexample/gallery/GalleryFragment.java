@@ -25,7 +25,8 @@ import example.mmigmur.mmimgurgalleryexample.viewmodel.ImageViewModel;
  * Created by migarcma on 17/3/18.
  */
 
-public class GalleryFragment extends BaseFragment implements GalleryView, ImageGalleryAdapter.OnImageClickedListener, ImageDetailFragment.OnDeleteImageListener {
+public class GalleryFragment extends BaseFragment implements GalleryView, ImageGalleryAdapter.OnImageClickedListener,
+        ImageDetailFragment.OnDeleteImageListener, ImageUploadFragment.OnImageUploadListener {
 
     @BindView(R.id.rv_gallery)
     RecyclerView rvGallery;
@@ -126,8 +127,21 @@ public class GalleryFragment extends BaseFragment implements GalleryView, ImageG
                 .commit();
     }
 
+    @OnClick(R.id.button_upload)
+    void goToUpload(){
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fl_gallery_content, ImageUploadFragment.newInstance(this))
+                .addToBackStack("GalleryFragment")
+                .commit();
+    }
+
     @Override
     public void imageDeleted() {
         presenter.refreshGallery();
+    }
+
+    @Override
+    public void imageUploaded() {
+
     }
 }

@@ -11,6 +11,9 @@ import example.mmigmur.mmimgurgalleryexample.gallery.GalleryView;
 import example.mmigmur.mmimgurgalleryexample.gallery.ImageDetailPresenter;
 import example.mmigmur.mmimgurgalleryexample.gallery.ImageDetailPresenterImpl;
 import example.mmigmur.mmimgurgalleryexample.gallery.ImageDetailView;
+import example.mmigmur.mmimgurgalleryexample.gallery.ImageUploadView;
+import example.mmigmur.mmimgurgalleryexample.gallery.UploadPresenter;
+import example.mmigmur.mmimgurgalleryexample.gallery.UploadPresenterImpl;
 import example.mmigmur.mmimgurgalleryexample.login.LoginPresenter;
 import example.mmigmur.mmimgurgalleryexample.login.LoginPresenterImpl;
 import example.mmigmur.mmimgurgalleryexample.login.LoginView;
@@ -55,6 +58,12 @@ public class BaseFragmentModule {
     @Provides
     ImageDetailPresenter provideImageDetailPresenter(BaseFragmentComponent baseFragmentComponent) {
         return new ImageDetailPresenterImpl(baseFragmentComponent.with(new BasePresenterModule()), (ImageDetailView) baseView);
+    }
+
+    @PerFragment
+    @Provides
+    UploadPresenter provideUploadPresenter(BaseFragmentComponent baseFragmentComponent) {
+        return new UploadPresenterImpl(baseFragmentComponent.with(new BasePresenterModule()), (ImageUploadView) baseView);
     }
 
 }
