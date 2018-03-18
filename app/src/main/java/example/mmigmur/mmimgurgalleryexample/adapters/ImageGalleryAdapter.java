@@ -49,14 +49,14 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
         ImageView imageView = holder.mPhotoImageView;
 
         Picasso.get().load(imageViewModel.getLink())
-                .resize(100, 100)
+                .resize(200, 200)
                 .centerCrop()
                 .into(imageView);
     }
 
     @Override
     public int getItemCount() {
-        return (galleryList.size());
+        return (galleryList!=null ? galleryList.size(): 0);
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -82,6 +82,14 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
                 }
             }
         }
+    }
+
+    public List<ImageViewModel> getGalleryList() {
+        return galleryList;
+    }
+
+    public void setGalleryList(List<ImageViewModel> galleryList) {
+        this.galleryList = galleryList;
     }
 
     public interface OnImageClickedListener{

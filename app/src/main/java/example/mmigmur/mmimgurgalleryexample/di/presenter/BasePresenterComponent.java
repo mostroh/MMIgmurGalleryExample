@@ -7,6 +7,7 @@ import example.mmigmur.domain.di.BaseInteractorComponent;
 import example.mmigmur.domain.di.BaseInteractorModule;
 import example.mmigmur.mmimgurgalleryexample.di.scopes.PerPresenter;
 import example.mmigmur.mmimgurgalleryexample.gallery.GalleryPresenterImpl;
+import example.mmigmur.mmimgurgalleryexample.gallery.ImageDetailPresenterImpl;
 import example.mmigmur.mmimgurgalleryexample.login.LoginPresenterImpl;
 import example.mmigmur.mmimgurgalleryexample.login.LoginWebViewPresenterImpl;
 
@@ -26,10 +27,11 @@ public interface BasePresenterComponent {
     //GALLERY
     void injectPresenter(GalleryPresenterImpl galleryPresenter);
 
+    void injectPresenter(ImageDetailPresenterImpl imageDetailPresenter);
+
     //interactor providers
     BaseInteractorComponent with(BaseInteractorModule baseInteractorModule);
 
     //repo providers
     BaseRepositoryComponent with(BaseRepositoryModule baseRepositoryModule);
-
 }

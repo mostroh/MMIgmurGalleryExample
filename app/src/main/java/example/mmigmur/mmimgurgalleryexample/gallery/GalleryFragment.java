@@ -10,6 +10,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import example.mmigmur.mmimgurgalleryexample.R;
 import example.mmigmur.mmimgurgalleryexample.adapters.ImageGalleryAdapter;
 import example.mmigmur.mmimgurgalleryexample.base.BaseActivity;
@@ -24,7 +25,7 @@ import example.mmigmur.mmimgurgalleryexample.viewmodel.ImageViewModel;
  * Created by migarcma on 17/3/18.
  */
 
-public class GalleryFragment extends BaseFragment implements GalleryView, ImageGalleryAdapter.OnImageClickedListener {
+public class GalleryFragment extends BaseFragment implements GalleryView, ImageGalleryAdapter.OnImageClickedListener, ImageDetailFragment.OnDeleteImageListener {
 
     @BindView(R.id.rv_gallery)
     RecyclerView rvGallery;
@@ -33,6 +34,8 @@ public class GalleryFragment extends BaseFragment implements GalleryView, ImageG
     GalleryPresenter presenter;
 
     private List<ImageViewModel> gallery = null;
+
+    private ImageGalleryAdapter adapter;
 
     public static GalleryFragment newInstance(String username) {
 
@@ -59,9 +62,6 @@ public class GalleryFragment extends BaseFragment implements GalleryView, ImageG
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         rvGallery.setHasFixedSize(true);
         rvGallery.setLayoutManager(layoutManager);
-
-        ImageGalleryAdapter adapter = new ImageGalleryAdapter(getActivity(), gallery, this);
-        rvGallery.setAdapter(adapter);
     }
 
     @Override
@@ -106,12 +106,28 @@ public class GalleryFragment extends BaseFragment implements GalleryView, ImageG
     }
 
     @Override
-    public void setUpGallery(List<ImageViewModel> viewGallery) {
+    public void setUpGallery() {
+        adapter = new ImageGalleryAdapter(getActivity(), gallery, this);
+        rvGallery.setAdapter(adapter);
+    }
+
+    @Override
+    public void refreshGallery(List<ImageViewModel> viewGallery) {
         this.gallery = viewGallery;
+        adapter.setGalleryList(gallery);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void imageClicked(ImageViewModel imageViewModelClicked) {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fl_gallery_content, ImageDetailFragment.newInstance(imageViewModelClicked,this))
+                .addToBackStack("GalleryFragment")
+                .commit();
+    }
 
+    @Override
+    public void imageDeleted() {
+        presenter.refreshGallery();
     }
 }

@@ -38,6 +38,7 @@ public class ImageToImageEntityMapper extends Mapper<Image, ImageEntity> {
         image.setTitle(value.getTitle());
         image.setViews(value.getViews());
         image.setType(value.getType());
+        image.setDeletehash(value.getDeletehash());
         return image;
     }
 }

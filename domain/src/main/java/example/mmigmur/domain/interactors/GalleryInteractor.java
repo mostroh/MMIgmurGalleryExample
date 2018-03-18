@@ -20,4 +20,13 @@ public interface GalleryInteractor {
 
         void onAccountGalleryConnectionFailure();
     }
+
+    void deleteImage(String imageDeleteHash, ImageDeleteInteractorResponse imageDeleteInteractorResponse);
+
+    interface ImageDeleteInteractorResponse {
+
+        void onDeleteSuccess();
+
+        void onDeleteFailure();
+    }
 }

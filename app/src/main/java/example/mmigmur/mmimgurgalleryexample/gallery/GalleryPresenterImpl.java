@@ -29,8 +29,9 @@ public class GalleryPresenterImpl extends BasePresenterImpl<GalleryView> impleme
 
     @Override
     public void init() {
-        galleryInteractor.getAccountGallery(this);
-        view.showLoading();
+        view.initViews();
+        view.setUpGallery();
+        refreshGallery();
     }
 
     @Override
@@ -44,21 +45,24 @@ public class GalleryPresenterImpl extends BasePresenterImpl<GalleryView> impleme
             }
         }
         view.hideLoading();
-        view.setUpGallery(viewGallery);
-        view.initViews();
+        view.refreshGallery(viewGallery);
     }
 
     @Override
     public void onAccountGalleryFailure() {
         view.hideLoading();
-        view.initViews();
         view.showGalleryError();
     }
 
     @Override
     public void onAccountGalleryConnectionFailure() {
         view.hideLoading();
-        view.initViews();
         view.showConnectionError();
+    }
+
+    @Override
+    public void refreshGallery() {
+        view.showLoading();
+        galleryInteractor.getAccountGallery(this);
     }
 }

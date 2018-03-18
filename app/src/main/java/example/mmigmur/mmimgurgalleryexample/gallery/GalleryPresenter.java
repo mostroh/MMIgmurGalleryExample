@@ -7,4 +7,6 @@ import example.mmigmur.mmimgurgalleryexample.base.BasePresenter;
  */
 
 public interface GalleryPresenter extends BasePresenter {
+
+    void refreshGallery();
 }

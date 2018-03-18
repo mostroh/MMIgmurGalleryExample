@@ -31,6 +31,12 @@ public class GalleryInteractorImpl implements GalleryInteractor {
         accountGalleryRunnable.run();
     }
 
+    @Override
+    public void deleteImage(String imageDeleteHash, ImageDeleteInteractorResponse imageDeleteInteractorResponse) {
+        ImageDeleteRunnable imageDeleteRunnable = new ImageDeleteRunnable(imageDeleteHash, imageDeleteInteractorResponse);
+        imageDeleteRunnable.run();
+    }
+
     private class AccountGalleryRunnable implements Runnable, GalleryRepoInterface.GalleryResponseListener {
 
         private AccountGalleryInteractorResponse accountGalleryInteractorResponse;
@@ -60,6 +66,34 @@ public class GalleryInteractorImpl implements GalleryInteractor {
         @Override
         public void onAccountGalleryFailure() {
             accountGalleryInteractorResponse.onAccountGalleryFailure();
+        }
+    }
+
+    private class ImageDeleteRunnable implements Runnable, GalleryRepoInterface.DeleteResponseListener {
+
+        private String deleteHash;
+        private ImageDeleteInteractorResponse imageDeleteInteractorResponse;
+
+        private ImageDeleteRunnable(String deleteHash, ImageDeleteInteractorResponse imageDeleteInteractorResponse) {
+            this.deleteHash = deleteHash;
+            this.imageDeleteInteractorResponse = imageDeleteInteractorResponse;
+        }
+
+        @Override
+        public void run() {
+            String accessToken = authStorageRepoInterface.getAccessToken();
+            galleryRepoInterface.deleteImage(deleteHash, accessToken,this);
+        }
+
+
+        @Override
+        public void onDeleteSuccessResponse() {
+            imageDeleteInteractorResponse.onDeleteSuccess();
+        }
+
+        @Override
+        public void onDeleteFailureResponse() {
+            imageDeleteInteractorResponse.onDeleteFailure();
         }
     }
 }

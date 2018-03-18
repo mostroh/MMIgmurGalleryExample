@@ -14,5 +14,6 @@ public interface GalleryView extends BaseFragmentView {
     void hideLoading();
     void showGalleryError();
     void showConnectionError();
-    void setUpGallery(List<ImageViewModel> viewGallery);
+    void setUpGallery();
+    void refreshGallery(List<ImageViewModel> viewGallery);
 }

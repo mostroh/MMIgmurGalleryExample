@@ -20,4 +20,13 @@ public interface GalleryRepoInterface {
 
         void onAccountGalleryFailure();
     }
+
+    void deleteImage(String deleteHash, String accessToken, DeleteResponseListener deleteResponseListener);
+
+    interface DeleteResponseListener {
+
+        void onDeleteSuccessResponse();
+
+        void onDeleteFailureResponse();
+    }
 }

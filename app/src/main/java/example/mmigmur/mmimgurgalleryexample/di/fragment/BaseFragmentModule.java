@@ -8,6 +8,9 @@ import example.mmigmur.mmimgurgalleryexample.di.scopes.PerFragment;
 import example.mmigmur.mmimgurgalleryexample.gallery.GalleryPresenter;
 import example.mmigmur.mmimgurgalleryexample.gallery.GalleryPresenterImpl;
 import example.mmigmur.mmimgurgalleryexample.gallery.GalleryView;
+import example.mmigmur.mmimgurgalleryexample.gallery.ImageDetailPresenter;
+import example.mmigmur.mmimgurgalleryexample.gallery.ImageDetailPresenterImpl;
+import example.mmigmur.mmimgurgalleryexample.gallery.ImageDetailView;
 import example.mmigmur.mmimgurgalleryexample.login.LoginPresenter;
 import example.mmigmur.mmimgurgalleryexample.login.LoginPresenterImpl;
 import example.mmigmur.mmimgurgalleryexample.login.LoginView;
@@ -46,6 +49,12 @@ public class BaseFragmentModule {
     @Provides
     GalleryPresenter provideGalleryPresenter(BaseFragmentComponent baseFragmentComponent) {
         return new GalleryPresenterImpl(baseFragmentComponent.with(new BasePresenterModule()), (GalleryView) baseView);
+    }
+
+    @PerFragment
+    @Provides
+    ImageDetailPresenter provideImageDetailPresenter(BaseFragmentComponent baseFragmentComponent) {
+        return new ImageDetailPresenterImpl(baseFragmentComponent.with(new BasePresenterModule()), (ImageDetailView) baseView);
     }
 
 }

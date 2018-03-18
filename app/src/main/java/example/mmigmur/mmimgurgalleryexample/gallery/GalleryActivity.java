@@ -32,4 +32,14 @@ public class GalleryActivity extends BaseActivity<ActivityComponent> {
                 .replace(R.id.fl_gallery_content, GalleryFragment.newInstance(username))
                 .commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            finish();
+        }
+        else {
+            getSupportFragmentManager().popBackStack();
+        }
+    }
 }

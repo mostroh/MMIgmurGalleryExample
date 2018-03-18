@@ -59,6 +59,9 @@ public class ImageViewModel implements Serializable {
     @SerializedName("width")
     @Expose
     private Integer width;
+    @SerializedName("deletehash")
+    @Expose
+    private String deletehash;
 
 
     public Integer getAccountId() {
@@ -187,5 +190,13 @@ public class ImageViewModel implements Serializable {
 
     public void setWidth(Integer width) {
         this.width = width;
+    }
+
+    public String getDeletehash() {
+        return deletehash;
+    }
+
+    public void setDeletehash(String deletehash) {
+        this.deletehash = deletehash;
     }
 }

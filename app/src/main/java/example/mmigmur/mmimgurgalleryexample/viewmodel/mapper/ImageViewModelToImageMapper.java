@@ -38,6 +38,7 @@ public class ImageViewModelToImageMapper extends Mapper<ImageViewModel, Image> {
         imageViewModel.setTitle(value.getTitle());
         imageViewModel.setViews(value.getViews());
         imageViewModel.setType(value.getType());
+        imageViewModel.setDeletehash(value.getDeletehash());
         return imageViewModel;
     }
 }

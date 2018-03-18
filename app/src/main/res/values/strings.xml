@@ -2,6 +2,10 @@
     <string name="app_name">Imgur Gallery Example</string>
     <string name="button_login">LOGIN IMGUR</string>
     <string name="button_upload">SUBIR FOTO</string>
+    <string name="image_title">Título</string>
+    <string name="image_title_default">Sin título</string>
+    <string name="image_description">Descripción</string>
+    <string name="image_description_default">Sin descripción</string>
 
     <!-- GENERAL -->
     <string name="BTN_ACEPT">ACEPTAR</string>
@@ -15,7 +19,8 @@
     <string name="BTN_CANCEL">CANCELAR</string>
     <string name="BTN_CLOSE">CERRAR</string>
     <string name="ERROR_CONECTION_MSG">Hubo un error de conexión. Verifica que tienes acceso a internet.</string>
-    <string name="ERROR_GALLERY_ACCESS">Hubo un error accediendo a la galería.</string>
+    <string name="ERROR_DELETING">Ocurrió un error y no se pudo borrar la imagen.</string>
+    <string name="ERROR_GALLERY_ACCESS">Ocurrió un error accediendo a la galería.</string>
     <string name="logged_in">Conectado</string>
     <string name="wrong_credentials">Credenciales incorrectas</string>
 </resources>
